@@ -12,9 +12,9 @@ public class MultipleDaysTicket implements Ticket {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public MultipleDaysTicket(int displayPrice, int days) {
-        this.displayPrice = displayPrice;
-        this.numberOfDays = days;
+    public MultipleDaysTicket(TicketInfo ticketInfo) {
+        this.displayPrice = ticketInfo.getPrice();
+        this.numberOfDays = ticketInfo.getDay();
         this.enteredDays = 0;
     }
 

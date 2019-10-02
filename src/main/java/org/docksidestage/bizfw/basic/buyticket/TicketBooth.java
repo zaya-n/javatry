@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author zaya
  */
 public class TicketBooth {
 
@@ -24,14 +25,13 @@ public class TicketBooth {
     //                                                                          Definition
     //                                                                          ==========
     private static final int MAX_QUANTITY = 10;
-    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
-    private static final int TWO_DAY_PRICE = 13200;
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int quantity = MAX_QUANTITY;
-    private int quantity2day = MAX_QUANTITY;
+    private TicketInfo oneDayInfo = new TicketInfo(1, 7400, MAX_QUANTITY);
+    private TicketInfo twoDayInfo = new TicketInfo(2, 13200, MAX_QUANTITY);
+    private TicketInfo fourDayInfo = new TicketInfo(4, 22400, MAX_QUANTITY);
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -40,24 +40,45 @@ public class TicketBooth {
     public TicketBooth() {
     }
 
+    public TicketInfo getOneDayInfo() {
+        return oneDayInfo;
+    }
+
+    public TicketInfo getTwoDayInfo() {
+        return twoDayInfo;
+    }
+
+    public TicketInfo getFourDayInfo() {
+        return fourDayInfo;
+    }
+
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    public OneDayTicket buyOneDayPassport(int handedMoney) {
-        check(handedMoney, ONE_DAY_PRICE);
-        --quantity;
-        addSales(handedMoney);
-        return new OneDayTicket(ONE_DAY_PRICE);
+    public TicketBuyResult buyOneDayPassport(int money) {
+        return buyPassport(money, oneDayInfo);
     }
 
     public TicketBuyResult buyTwoDayPassport(int money) {
-        check(money, TWO_DAY_PRICE);
-        --quantity2day;
-        addSales(TWO_DAY_PRICE);
+        return buyPassport(money, twoDayInfo);
+    }
+
+    public TicketBuyResult buyFourDayPassport(int money) {
+        return buyPassport(money, fourDayInfo);
+    }
+
+    private TicketBuyResult buyPassport(int money, TicketInfo ticketInfo) {
+        check(money, ticketInfo);
+        ticketInfo.setQuantity(ticketInfo.getQuantity() - 1);
+        addSales(ticketInfo.getPrice());
 
         TicketBuyResult ticketBuyResult = new TicketBuyResult();
-        ticketBuyResult.setTicket(new MultipleDaysTicket(TWO_DAY_PRICE, 2));
-        int change = money - TWO_DAY_PRICE;
+        if ( ticketInfo.getDay() == 1) {
+            ticketBuyResult.setTicket(new OneDayTicket(oneDayInfo.getPrice()));
+        } else {
+            ticketBuyResult.setTicket(new MultipleDaysTicket(ticketInfo));
+        }
+        int change = money - ticketInfo.getPrice();
         ticketBuyResult.setChange(change);
         return ticketBuyResult;
     }
@@ -70,11 +91,11 @@ public class TicketBooth {
         }
     }
 
-    private void check(int money, int passportPrice) {
-        if (quantity <= 0) {
+    private void check(int money, TicketInfo ticketInfo) {
+        if (ticketInfo.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (money < passportPrice) {
+        if (money < ticketInfo.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + money);
         }
     }
@@ -100,14 +121,6 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int get2DayQuantity() {
-        return quantity2day;
-    }
-
     public Integer getSalesProceeds() {
         return salesProceeds;
     }
