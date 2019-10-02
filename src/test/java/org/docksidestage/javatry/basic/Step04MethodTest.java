@@ -151,6 +151,7 @@ public class Step04MethodTest extends PlainTestCase {
      * </pre>
      */
     private boolean availableLogging;
+
     public void test_method_making() {
         // comment out after making these methods
         String replaced = replaceCtoB(replaceAtoB("ABC"));
@@ -161,6 +162,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     // write methods here
+    // TODO zaya 細かいけど、呼び出される順番、というかjavadocで列挙されている順番でメソッドを定義したほうが見やすいかなと by jflute (2019/10/02)
     private void showSea(String sea) {
         log(sea);
     }
@@ -170,10 +172,13 @@ public class Step04MethodTest extends PlainTestCase {
         return availableLogging;
     }
 
+    // TODO zaya まあ、broadwayは test_method_making() でたまたま利用されている名前なので、変数名に適してないかなと  by jflute (2019/10/02)
+    // replaced も、addPrefix() からすると、replaceされたかどうかは意識していないので適さない。
     private String addPrefix(String broadway, String replaced) {
         return broadway + ":" + replaced;
     }
 
+    // TODO zaya こっちの abc も同じことが言えるかなと by jflute (2019/10/02)
     private String replaceCtoB(String abc) {
         return abc.replace("C", "B");
     }

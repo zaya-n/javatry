@@ -14,6 +14,7 @@ public class MultipleDaysTicket implements Ticket {
     //                                                                         ===========
     public MultipleDaysTicket(TicketInfo ticketInfo) {
         this.displayPrice = ticketInfo.getPrice();
+        // TODO zaya こっちが Days なら、getDay() も Days にしたいかもね by jflute (2019/10/02)
         this.numberOfDays = ticketInfo.getDay();
         this.enteredDays = 0;
     }

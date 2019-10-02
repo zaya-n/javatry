@@ -23,6 +23,7 @@ public interface Ticket {
 
     void doInPark();
     int getDisplayPrice();
+    // TODO zaya もう、FourDay があるので、そのメソッドも追加する？ by jflute (2019/10/02)
     boolean isTwoDayTicket();
     boolean isOneDayTicket();
 }

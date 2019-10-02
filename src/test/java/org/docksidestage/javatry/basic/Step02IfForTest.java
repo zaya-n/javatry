@@ -197,6 +197,7 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // should be same as before-fix
 
+        // TODO zaya "ga" を含んだstageがなかった場合に違う結果になってしまう by jflute (2019/10/02)
         // after1
         List<String> containsGa = new ArrayList<>();
         stageList.forEach(s -> {

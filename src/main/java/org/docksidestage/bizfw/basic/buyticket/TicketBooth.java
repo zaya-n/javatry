@@ -29,6 +29,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
+    // TODO zaya [なるほど]定義と状態をひとつにまとめたクラスにしたんだね by jflute (2019/10/02)
     private TicketInfo oneDayInfo = new TicketInfo(1, 7400, MAX_QUANTITY);
     private TicketInfo twoDayInfo = new TicketInfo(2, 13200, MAX_QUANTITY);
     private TicketInfo fourDayInfo = new TicketInfo(4, 22400, MAX_QUANTITY);
@@ -40,6 +41,7 @@ public class TicketBooth {
     public TicketBooth() {
     }
 
+    // TODO zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)
     public TicketInfo getOneDayInfo() {
         return oneDayInfo;
     }
@@ -69,10 +71,12 @@ public class TicketBooth {
 
     private TicketBuyResult buyPassport(int money, TicketInfo ticketInfo) {
         check(money, ticketInfo);
+        // TODO zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
         ticketInfo.setQuantity(ticketInfo.getQuantity() - 1);
         addSales(ticketInfo.getPrice());
 
         TicketBuyResult ticketBuyResult = new TicketBuyResult();
+        // TODO zaya "if (" のところ空白が空いてる？他のifでは空いてないので統一しよう by jflute (2019/10/02)
         if ( ticketInfo.getDay() == 1) {
             ticketBuyResult.setTicket(new OneDayTicket(oneDayInfo.getPrice()));
         } else {
@@ -83,6 +87,7 @@ public class TicketBooth {
         return ticketBuyResult;
     }
 
+    // TODO zaya もうすでに handedMoney ではないので変数名を考えよう by jflute (2019/10/02)
     private void addSales(int handedMoney) {
         if (salesProceeds != null) {
             salesProceeds = salesProceeds + handedMoney;
@@ -91,6 +96,8 @@ public class TicketBooth {
         }
     }
 
+    // TODO zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
+    // 一箇所からしか呼び出されないようなprivateメソッドは、呼び出し順序と合わせた方が見やすい
     private void check(int money, TicketInfo ticketInfo) {
         if (ticketInfo.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
