@@ -1,5 +1,8 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
+/**
+ * @author zaya
+ */
 public class TicketInfo {
     private int day;
     private int price;
