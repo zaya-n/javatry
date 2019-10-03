@@ -41,36 +41,23 @@ public class TicketBooth {
     public TicketBooth() {
     }
 
-    // TODO zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)
-    public TicketInfo getOneDayInfo() {
-        return oneDayInfo;
-    }
-
-    public TicketInfo getTwoDayInfo() {
-        return twoDayInfo;
-    }
-
-    public TicketInfo getFourDayInfo() {
-        return fourDayInfo;
-    }
-
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
     public TicketBuyResult buyOneDayPassport(int money) {
-        return buyPassport(money, oneDayInfo);
+        return buyPassport(oneDayInfo, money);
     }
 
     public TicketBuyResult buyTwoDayPassport(int money) {
-        return buyPassport(money, twoDayInfo);
+        return buyPassport(twoDayInfo, money);
     }
 
     public TicketBuyResult buyFourDayPassport(int money) {
-        return buyPassport(money, fourDayInfo);
+        return buyPassport(fourDayInfo, money);
     }
 
-    private TicketBuyResult buyPassport(int money, TicketInfo ticketInfo) {
-        check(money, ticketInfo);
+    private TicketBuyResult buyPassport(TicketInfo ticketInfo, int money) {
+        check(ticketInfo, money);
         // TODO done zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
         ticketInfo.reduceQuantity();
         addSales(ticketInfo.getPrice());
@@ -96,9 +83,9 @@ public class TicketBooth {
         }
     }
 
-    // TODO zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
+    // TODO done zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
     // 一箇所からしか呼び出されないようなprivateメソッドは、呼び出し順序と合わせた方が見やすい
-    private void check(int money, TicketInfo ticketInfo) {
+    private void check(TicketInfo ticketInfo, int money) {
         if (ticketInfo.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
@@ -130,5 +117,18 @@ public class TicketBooth {
         public TicketShortMoneyException(String msg) {
             super(msg);
         }
+    }
+
+    // TODO done zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)
+    public TicketInfo getOneDayInfo() {
+        return oneDayInfo;
+    }
+
+    public TicketInfo getTwoDayInfo() {
+        return twoDayInfo;
+    }
+
+    public TicketInfo getFourDayInfo() {
+        return fourDayInfo;
     }
 }
