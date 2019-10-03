@@ -1,7 +1,8 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO zaya javadoc by jflute (2019/10/03)
 public class TicketInfo {
-    // TODO done zaya finalが付けられるものには付けてみよう。すると可読性良くなるかなと by jflute (2019/10/02)
+    // done zaya finalが付けられるものには付けてみよう。すると可読性良くなるかなと by jflute (2019/10/02)
     private final int day;
     private final int price;
     private int quantity;

@@ -23,6 +23,6 @@ public interface Ticket {
 
     void doInPark();
     int getDisplayPrice();
-    // TODO done zaya もう、FourDay があるので、そのメソッドも追加する？ by jflute (2019/10/02)
+    // done zaya もう、FourDay があるので、そのメソッドも追加する？ by jflute (2019/10/02)
     int getTicketDays();
 }

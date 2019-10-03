@@ -27,7 +27,7 @@ import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO done zaya unusedのimport文があるよ by jflute (2019/10/02)
+// done zaya unusedのimport文があるよ by jflute (2019/10/02)
 /**
  * The test of object-oriented. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>

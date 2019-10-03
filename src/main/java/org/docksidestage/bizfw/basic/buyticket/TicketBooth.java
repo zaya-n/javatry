@@ -58,12 +58,12 @@ public class TicketBooth {
 
     private TicketBuyResult buyPassport(TicketInfo ticketInfo, int money) {
         check(ticketInfo, money);
-        // TODO done zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
+        // done zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
         ticketInfo.reduceQuantity();
         addSales(ticketInfo.getPrice());
 
         TicketBuyResult ticketBuyResult = new TicketBuyResult();
-        // TODO done zaya "if (" のところ空白が空いてる？他のifでは空いてないので統一しよう by jflute (2019/10/02)
+        // done zaya "if (" のところ空白が空いてる？他のifでは空いてないので統一しよう by jflute (2019/10/02)
         if (ticketInfo.getDays() == 1) {
             ticketBuyResult.setTicket(new OneDayTicket(oneDayInfo.getPrice()));
         } else {
@@ -74,7 +74,7 @@ public class TicketBooth {
         return ticketBuyResult;
     }
 
-    // TODO done zaya もうすでに money ではないので変数名を考えよう by jflute (2019/10/02)
+    // done zaya もうすでに money ではないので変数名を考えよう by jflute (2019/10/02)
     private void addSales(int price) {
         if (salesProceeds != null) {
             salesProceeds = salesProceeds + price;
@@ -83,8 +83,9 @@ public class TicketBooth {
         }
     }
 
-    // TODO done zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
+    // done zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
     // 一箇所からしか呼び出されないようなprivateメソッドは、呼び出し順序と合わせた方が見やすい
+    // TODO zaya (続き)なので、check()をaddSales()の上に移動しましょう by jflute (2019/10/03)
     private void check(TicketInfo ticketInfo, int money) {
         if (ticketInfo.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -101,6 +102,7 @@ public class TicketBooth {
         return salesProceeds;
     }
 
+    // TODO zaya このExceptionたちは、Accessorとは関係ないので、使ってる check() の直下くらいに移動しよう by jflute (2019/10/03)
     public static class TicketSoldOutException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
@@ -119,7 +121,7 @@ public class TicketBooth {
         }
     }
 
-    // TODO done zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)
+    // done zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)
     public TicketInfo getOneDayInfo() {
         return oneDayInfo;
     }

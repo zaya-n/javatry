@@ -165,24 +165,25 @@ public class Step04MethodTest extends PlainTestCase {
         return toReplace.replace("A", "B");
     }
 
-    // TODO done zaya こっちの abc も同じことが言えるかなと by jflute (2019/10/02)
+    // done zaya こっちの abc も同じことが言えるかなと by jflute (2019/10/02)
     private String replaceCtoB(String toReplace) {
         return toReplace.replace("C", "B");
     }
 
-    // TODO done zaya まあ、broadwayは test_method_making() でたまたま利用されている名前なので、変数名に適してないかなと  by jflute (2019/10/02)
+    // done zaya まあ、broadwayは test_method_making() でたまたま利用されている名前なので、変数名に適してないかなと  by jflute (2019/10/02)
     // replaced も、addPrefix() からすると、replaceされたかどうかは意識していないので適さない。
     private String addPrefix(String before, String replaced) {
         return before + ":" + replaced;
     }
 
     private boolean isAvailableLogging() {
+        // TODO zaya "初期値:true" というのは、変数を宣言したときに true を代入しよう、という意味です by jflute (2019/10/03)
         availableLogging = true;
         return availableLogging;
     }
 
     // write methods here
-    // TODO done zaya 細かいけど、呼び出される順番、というかjavadocで列挙されている順番でメソッドを定義したほうが見やすいかなと by jflute (2019/10/02)
+    // done zaya 細かいけど、呼び出される順番、というかjavadocで列挙されている順番でメソッドを定義したほうが見やすいかなと by jflute (2019/10/02)
     private void showSea(String sea) {
         log(sea);
     }

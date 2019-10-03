@@ -1,5 +1,6 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO zaya javadoc by jflute (2019/10/03)
 public class MultipleDaysTicket implements Ticket {
 
     // ===================================================================================
@@ -14,7 +15,8 @@ public class MultipleDaysTicket implements Ticket {
     //                                                                         ===========
     public MultipleDaysTicket(TicketInfo ticketInfo) {
         this.displayPrice = ticketInfo.getPrice();
-        // TODO done zaya こっちが Days なら、getDays() も Days にしたいかもね by jflute (2019/10/02)
+        // done zaya こっちが Days なら、getDays() も Days にしたいかもね by jflute (2019/10/02)
+        // TODO zaya (続き)その場合、getDays()だけじゃなく、TicketInfo内部の変数などもdaysにしよう by jflute (2019/10/03)
         this.numberOfDays = ticketInfo.getDays();
         this.enteredDays = 0;
     }
