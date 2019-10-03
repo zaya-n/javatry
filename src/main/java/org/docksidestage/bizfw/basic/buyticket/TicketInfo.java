@@ -1,9 +1,9 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
 public class TicketInfo {
-    // TODO zaya finalが付けられるものには付けてみよう。すると可読性良くなるかなと by jflute (2019/10/02)
-    private int day;
-    private int price;
+    // TODO done zaya finalが付けられるものには付けてみよう。すると可読性良くなるかなと by jflute (2019/10/02)
+    private final int day;
+    private final int price;
     private int quantity;
 
     public TicketInfo(int day, int price, int quantity) {
@@ -12,7 +12,7 @@ public class TicketInfo {
         this.quantity = quantity;
     }
 
-    public int getDay() {
+    public int getDays() {
         return day;
     }
 
@@ -23,7 +23,7 @@ public class TicketInfo {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void reduceQuantity() {
+        this.quantity--;
     }
 }

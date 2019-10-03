@@ -71,13 +71,13 @@ public class TicketBooth {
 
     private TicketBuyResult buyPassport(int money, TicketInfo ticketInfo) {
         check(money, ticketInfo);
-        // TODO zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
-        ticketInfo.setQuantity(ticketInfo.getQuantity() - 1);
+        // TODO done zaya この辺は、TicketInfo自体に数量を減らすメソッドがあってもいいかもね(実装ポリシー次第だけど) by jflute (2019/10/02)
+        ticketInfo.reduceQuantity();
         addSales(ticketInfo.getPrice());
 
         TicketBuyResult ticketBuyResult = new TicketBuyResult();
-        // TODO zaya "if (" のところ空白が空いてる？他のifでは空いてないので統一しよう by jflute (2019/10/02)
-        if ( ticketInfo.getDay() == 1) {
+        // TODO done zaya "if (" のところ空白が空いてる？他のifでは空いてないので統一しよう by jflute (2019/10/02)
+        if (ticketInfo.getDays() == 1) {
             ticketBuyResult.setTicket(new OneDayTicket(oneDayInfo.getPrice()));
         } else {
             ticketBuyResult.setTicket(new MultipleDaysTicket(ticketInfo));
@@ -87,12 +87,12 @@ public class TicketBooth {
         return ticketBuyResult;
     }
 
-    // TODO zaya もうすでに handedMoney ではないので変数名を考えよう by jflute (2019/10/02)
-    private void addSales(int handedMoney) {
+    // TODO done zaya もうすでに money ではないので変数名を考えよう by jflute (2019/10/02)
+    private void addSales(int price) {
         if (salesProceeds != null) {
-            salesProceeds = salesProceeds + handedMoney;
+            salesProceeds = salesProceeds + price;
         } else {
-            salesProceeds = handedMoney;
+            salesProceeds = price;
         }
     }
 
@@ -105,6 +105,13 @@ public class TicketBooth {
         if (money < ticketInfo.getPrice()) {
             throw new TicketShortMoneyException("Short money: " + money);
         }
+    }
+
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
+    public Integer getSalesProceeds() {
+        return salesProceeds;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
@@ -123,12 +130,5 @@ public class TicketBooth {
         public TicketShortMoneyException(String msg) {
             super(msg);
         }
-    }
-
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    public Integer getSalesProceeds() {
-        return salesProceeds;
     }
 }

@@ -14,8 +14,8 @@ public class MultipleDaysTicket implements Ticket {
     //                                                                         ===========
     public MultipleDaysTicket(TicketInfo ticketInfo) {
         this.displayPrice = ticketInfo.getPrice();
-        // TODO zaya こっちが Days なら、getDay() も Days にしたいかもね by jflute (2019/10/02)
-        this.numberOfDays = ticketInfo.getDay();
+        // TODO done zaya こっちが Days なら、getDays() も Days にしたいかもね by jflute (2019/10/02)
+        this.numberOfDays = ticketInfo.getDays();
         this.enteredDays = 0;
     }
 
@@ -40,11 +40,5 @@ public class MultipleDaysTicket implements Ticket {
         return enteredDays;
     }
 
-    public boolean isTwoDayTicket() {
-        return numberOfDays==2;
-    }
-
-    public boolean isOneDayTicket() {
-        return false;
-    }
+    public int getTicketDays() { return this.numberOfDays; }
 }

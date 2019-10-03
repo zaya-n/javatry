@@ -160,9 +160,9 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         int handedMoney = 20000;
         Ticket twoDayTicket = booth.buyTwoDayPassport(handedMoney).getTicket();
-        log(twoDayTicket.isTwoDayTicket());
+        log(twoDayTicket.getTicketDays());
         Ticket oneDayTicket = booth.buyOneDayPassport(handedMoney).getTicket();
-        log(oneDayTicket.isOneDayTicket());
+        log(oneDayTicket.getTicketDays());
     }
 
     // ===================================================================================

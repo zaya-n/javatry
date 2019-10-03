@@ -36,11 +36,5 @@ public class OneDayTicket implements Ticket {
         return alreadyIn;
     }
 
-    public boolean isTwoDayTicket() {
-        return false;
-    }
-
-    public boolean isOneDayTicket() {
-        return true;
-    }
+    public int getTicketDays() { return 1; }
 }
