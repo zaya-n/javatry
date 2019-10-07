@@ -24,19 +24,29 @@ import org.docksidestage.bizfw.basic.supercar.SupercarManufacturer.Supercar;
 public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
-        SupercarManufacturer manufacturer = createSupercarManufacturer();
-        if (clientRequirement.contains("steering wheel is like sea")) {
-            return manufacturer.makeSupercar("piari");
-        } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            return manufacturer.makeSupercar("land");
-        } else if (clientRequirement.contains("steering wheel has many shop")) {
-            return manufacturer.makeSupercar("piari");
-        } else {
-            throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+        try {
+            SupercarManufacturer manufacturer = createSupercarManufacturer();
+            if (clientRequirement.contains("steering wheel is like sea")) {
+                return manufacturer.makeSupercar("piari");
+            } else if (clientRequirement.contains("steering wheel is useful on land")) {
+                return manufacturer.makeSupercar("land");
+            } else if (clientRequirement.contains("steering wheel has many shop")) {
+                return manufacturer.makeSupercar("piari");
+            } else {
+                throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+            }
+        } catch (SupercarManufacturer.SuperCarCannotMakeException e) {
+            throw new SuperCarCannotOrderException("注文できない, clientRequirement: " + clientRequirement, e);
         }
     }
 
     protected SupercarManufacturer createSupercarManufacturer() {
         return new SupercarManufacturer();
+    }
+
+    public static class SuperCarCannotOrderException extends RuntimeException {
+        public SuperCarCannotOrderException(String msg, Exception e) {
+            super(msg, e);
+        }
     }
 }

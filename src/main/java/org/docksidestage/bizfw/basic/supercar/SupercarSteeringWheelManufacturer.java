@@ -35,10 +35,13 @@ public class SupercarSteeringWheelManufacturer {
         String specText = componentDB.findClincherSpecText(steeringWheelId);
         ScrewSpec screwSpec = new ScrewSpec(specText);
 
-        SpecialScrewManufacturer manufacturer = createSpecialScrewManufacturer();
-        SpecialScrew screw = manufacturer.makeSpecialScrew(screwSpec);
-
-        return new SteeringWheel(screw);
+        try {
+            SpecialScrewManufacturer manufacturer = createSpecialScrewManufacturer();
+            SpecialScrew screw = manufacturer.makeSpecialScrew(screwSpec);
+            return new SteeringWheel(screw);
+        } catch (RuntimeException e) {
+            throw new SteeringWheelCannotMakeException("SteeringWheel作れない, " + screwSpec, e);
+        }
     }
 
     protected SpecialScrewManufacturer createSpecialScrewManufacturer() {
@@ -49,6 +52,12 @@ public class SupercarSteeringWheelManufacturer {
 
         public SteeringWheel(SpecialScrew screw) {
             // dummy
+        }
+    }
+
+    public static class SteeringWheelCannotMakeException extends RuntimeException {
+        public SteeringWheelCannotMakeException(String msg, Exception e) {
+            super(msg, e);
         }
     }
 }

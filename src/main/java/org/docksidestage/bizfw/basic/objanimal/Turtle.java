@@ -15,38 +15,37 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
+import org.docksidestage.bizfw.basic.objanimal.crawler.Crawler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The object for animal(動物).
+ * The object for dog(犬).
  * @author jflute
- * @author zaya
  */
-public abstract class Animal extends BarkingProcess implements Loudable {
+public class Turtle extends Animal implements Crawler {
+
+    // ===================================================================================
+    //                                                                          Definition
+    //                                                                          ==========
+    private static final Logger logger = LoggerFactory.getLogger(Turtle.class);
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Animal() {
-        hitPoint = getInitialHitPoint();
-    }
-
-    protected int getInitialHitPoint() {
-        return 10; // as default
+    public Turtle() {
     }
 
     // ===================================================================================
-    //                                                                               Loud
+    //                                                                               Bark
     //                                                                              ======
     @Override
-    public String soundLoudly() {
-        return bark().getBarkWord();
+    protected String getBarkWord() {
+        return "...";
     }
 
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    public int getHitPoint() {
-        return hitPoint;
+    @Override
+    public void crawl() {
+        logger.debug("crawling slowly...");
     }
 }

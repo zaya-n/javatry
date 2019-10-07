@@ -21,10 +21,16 @@ import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Turtle;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
+import org.docksidestage.javatry.basic.st6.dbms.St6Sql;
+import org.docksidestage.javatry.basic.st6.os.St6Linux;
+import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
 import org.docksidestage.unit.PlainTestCase;
 
 // done zaya unusedのimport文があるよ by jflute (2019/10/02)
@@ -298,6 +304,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_interface_runnerImpl() {
         // your confirmation code here
+        Dog dog = new Dog();
+        dog.run();
     }
 
     // ===================================================================================
@@ -309,6 +317,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
         // your confirmation code here
+        Turtle turtle = new Turtle();
+        turtle.bark();
     }
 
     /**
@@ -317,6 +327,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_makeInterface() {
         // your confirmation code here
+        Turtle turtle = new Turtle();
+        turtle.crawl();
     }
 
     // ===================================================================================
@@ -328,6 +340,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
+        St6Sql mySql = new St6MySql();
+        log(mySql.buildPagingQuery(1, 1));
+        St6Sql postgreSql = new St6PostgreSql();
+        log(postgreSql.buildPagingQuery(1, 1));
     }
 
     /**
@@ -336,6 +352,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
         // your confirmation code here
+        St6OperationSystem st6Linux = new St6Linux("1");
+        st6Linux.buildUserResourcePath("path");
     }
 
     // ===================================================================================
@@ -347,6 +365,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
+        Animal dog = new Dog();
+        BarkedSound bark = dog.bark();
+        log(bark.getBarkWord());
     }
 
     /**
