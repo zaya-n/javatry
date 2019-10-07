@@ -29,7 +29,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO zaya [なるほど]定義と状態をひとつにまとめたクラスにしたんだね by jflute (2019/10/02)
+    // TODO done zaya [なるほど]定義と状態をひとつにまとめたクラスにしたんだね by jflute (2019/10/02)
     private TicketInfo oneDayInfo = new TicketInfo(1, 7400, MAX_QUANTITY);
     private TicketInfo twoDayInfo = new TicketInfo(2, 13200, MAX_QUANTITY);
     private TicketInfo fourDayInfo = new TicketInfo(4, 22400, MAX_QUANTITY);
@@ -74,18 +74,9 @@ public class TicketBooth {
         return ticketBuyResult;
     }
 
-    // done zaya もうすでに money ではないので変数名を考えよう by jflute (2019/10/02)
-    private void addSales(int price) {
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + price;
-        } else {
-            salesProceeds = price;
-        }
-    }
-
     // done zaya ここも、メソッドの定義順序をもう少し呼び出しと直感的にしよう by jflute (2019/10/02)
     // 一箇所からしか呼び出されないようなprivateメソッドは、呼び出し順序と合わせた方が見やすい
-    // TODO zaya (続き)なので、check()をaddSales()の上に移動しましょう by jflute (2019/10/03)
+    // TODO done zaya (続き)なので、check()をaddSales()の上に移動しましょう by jflute (2019/10/03)
     private void check(TicketInfo ticketInfo, int money) {
         if (ticketInfo.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -95,14 +86,7 @@ public class TicketBooth {
         }
     }
 
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    public Integer getSalesProceeds() {
-        return salesProceeds;
-    }
-
-    // TODO zaya このExceptionたちは、Accessorとは関係ないので、使ってる check() の直下くらいに移動しよう by jflute (2019/10/03)
+    // TODO done zaya このExceptionたちは、Accessorとは関係ないので、使ってる check() の直下くらいに移動しよう by jflute (2019/10/03)
     public static class TicketSoldOutException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
@@ -119,6 +103,22 @@ public class TicketBooth {
         public TicketShortMoneyException(String msg) {
             super(msg);
         }
+    }
+
+    // done zaya もうすでに money ではないので変数名を考えよう by jflute (2019/10/02)
+    private void addSales(int price) {
+        if (salesProceeds != null) {
+            salesProceeds = salesProceeds + price;
+        } else {
+            salesProceeds = price;
+        }
+    }
+
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
+    public Integer getSalesProceeds() {
+        return salesProceeds;
     }
 
     // done zaya getterは、タグコメント Accessor のところで宣言しよう by jflute (2019/10/02)

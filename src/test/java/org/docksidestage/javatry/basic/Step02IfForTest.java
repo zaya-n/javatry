@@ -198,18 +198,22 @@ public class Step02IfForTest extends PlainTestCase {
         log(sea); // should be same as before-fix
 
         // done zaya "ga" を含んだstageがなかった場合に違う結果になってしまう by jflute (2019/10/02)
-        // TODO zaya (続き)ga含みの要素が存在しない場合は、br以外の最後の要素がseaに入るので、そのように実装しよう by jflute (2019/10/03)
+        // TODO done zaya (続き)ga含みの要素が存在しない場合は、br以外の最後の要素がseaに入るので、そのように実装しよう by jflute (2019/10/03)
         // after1
         List<String> containsGa = new ArrayList<>();
+        List<String> notBr = new ArrayList<>();
         stageList.forEach(s -> {
             if (s.startsWith("br")) {
                 return;
             }
+            notBr.add(s);
             if (s.contains("ga")) {
                 containsGa.add(s);
             }
         });
-        if (!containsGa.isEmpty()) {
+        if (containsGa.isEmpty()) {
+            log(notBr.get(notBr.size()-1));
+        } else {
             log(containsGa.get(0));
         }
 

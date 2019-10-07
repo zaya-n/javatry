@@ -150,7 +150,7 @@ public class Step04MethodTest extends PlainTestCase {
      * o showSea(): 一つのString引数、戻り値なし、引数をlog()で表示する
      * </pre>
      */
-    private boolean availableLogging;
+    private boolean availableLogging = true;
 
     public void test_method_making() {
         // comment out after making these methods
@@ -177,8 +177,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
 
     private boolean isAvailableLogging() {
-        // TODO zaya "初期値:true" というのは、変数を宣言したときに true を代入しよう、という意味です by jflute (2019/10/03)
-        availableLogging = true;
+        // TODO done zaya "初期値:true" というのは、変数を宣言したときに true を代入しよう、という意味です by jflute (2019/10/03)
         return availableLogging;
     }
 

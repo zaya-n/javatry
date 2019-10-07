@@ -1,6 +1,9 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO zaya javadoc by jflute (2019/10/03)
+// TODO done zaya javadoc by jflute (2019/10/03)
+/**
+ * @author zaya
+ */
 public class OneDayTicket implements Ticket {
 
     // ===================================================================================
