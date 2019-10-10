@@ -11,7 +11,7 @@ public abstract class BarkingProcess {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final Logger logger = LoggerFactory.getLogger(Animal.class);
+    private static final Logger logger = LoggerFactory.getLogger(BarkingProcess.class);
 
     // ===================================================================================
     //                                                                           Attribute
