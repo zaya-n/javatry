@@ -1,58 +1,33 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author zaya
  */
-public abstract class BarkingProcess {
+public class BarkingProcess {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final Logger logger = LoggerFactory.getLogger(BarkingProcess.class);
-
-    // ===================================================================================
-    //                                                                           Attribute
-    //                                                                           =========
-    protected int hitPoint;
+    private Animal animal;
 
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
+    public BarkingProcess(Animal animal) {
+        this.animal = animal;
+    }
+
     public BarkedSound bark() {
-        breatheIn();
-        prepareAbdominalMuscle();
-        String barkWord = getBarkWord();
-        BarkedSound barkedSound = doBark(barkWord);
-        return barkedSound;
+        animal.breatheIn();
+        animal.prepareAbdominalMuscle();
+        String barkWord = animal.getBarkWord();
+        return doBark(barkWord);
     }
-
-    protected void prepareAbdominalMuscle() {
-        logger.debug("...Using my abdominal muscle"); // dummy implementation
-        downHitPoint();
-    }
-
-    protected void breatheIn() {
-        logger.debug("...Breathing in"); // dummy implementation
-        downHitPoint();
-    }
-
-    protected abstract String getBarkWord();
 
     protected BarkedSound doBark(String barkWord) {
-        downHitPoint();
+        animal.downHitPoint();
         return new BarkedSound(barkWord);
     }
 
-    // ===================================================================================
-    //                                                                           Hit Point
-    //                                                                           =========
-    protected void downHitPoint() {
-        --hitPoint;
-        if (hitPoint == 0) {
-            throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());
-        }
-    }
+
 }

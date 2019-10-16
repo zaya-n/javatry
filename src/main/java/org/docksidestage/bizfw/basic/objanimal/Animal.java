@@ -16,23 +16,49 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The object for animal(動物).
  * @author jflute
  * @author zaya
  */
-public abstract class Animal extends BarkingProcess implements Loudable {
+public abstract class Animal implements Loudable {
 
+
+    private static final Logger logger = LoggerFactory.getLogger(Animal.class);
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+    protected int hitPoint;
+    protected BarkingProcess barkingProcess;
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Animal() {
         hitPoint = getInitialHitPoint();
+        this.barkingProcess = new BarkingProcess(this);
     }
 
     protected int getInitialHitPoint() {
         return 10; // as default
+    }
+
+    protected abstract String getBarkWord();
+
+    public BarkedSound bark() {
+       return barkingProcess.bark();
+    }
+
+    protected void prepareAbdominalMuscle() {
+        logger.debug("...Using my abdominal muscle"); // dummy implementation
+        downHitPoint();
+    }
+
+    protected void breatheIn() {
+        logger.debug("...Breathing in"); // dummy implementation
+        downHitPoint();
     }
 
     // ===================================================================================
@@ -40,7 +66,7 @@ public abstract class Animal extends BarkingProcess implements Loudable {
     //                                                                              ======
     @Override
     public String soundLoudly() {
-        return bark().getBarkWord();
+        return barkingProcess.bark().getBarkWord();
     }
 
     // ===================================================================================
@@ -48,5 +74,15 @@ public abstract class Animal extends BarkingProcess implements Loudable {
     //                                                                            ========
     public int getHitPoint() {
         return hitPoint;
+    }
+
+    // ===================================================================================
+    //                                                                           Hit Point
+    //                                                                           =========
+    protected void downHitPoint() {
+        --hitPoint;
+        if (hitPoint == 0) {
+            throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());
+        }
     }
 }
