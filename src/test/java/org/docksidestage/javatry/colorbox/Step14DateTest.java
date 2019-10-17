@@ -37,6 +37,8 @@ public class Step14DateTest extends PlainTestCase {
 
     /**
      * What string of toString() is converted to LocalDate from slash-separated date string (e.g. 2019/04/24) in Set in yellow color-box? <br>
+     *     ↓
+     * How is it going to be if the slash-separated date string in yellow color-box  is converted to LocaDate and toString is used?
      * (yellowのカラーボックスに入っているSetの中のスラッシュ区切り (e.g. 2019/04/24) の日付文字列をLocalDateに変換してtoString()したら？)
      */
     public void test_parseDate() {
@@ -51,6 +53,8 @@ public class Step14DateTest extends PlainTestCase {
 
     /**
      * What day of week is second-found date in color-boxes added to three days? <br>
+     *     ↓
+     * Add 3 days to second-found date in color-boxes, What day of week is it? <br>
      * (カラーボックスに入っている二番目に見つかる日付に3日進めると何曜日？)
      */
     public void test_plusDays_weekOfDay() {
@@ -71,6 +75,13 @@ public class Step14DateTest extends PlainTestCase {
      * that is month-added with LocalDateTime's seconds in the same color-box,
      * and is day-added with Long value in red color-box,
      * and is day-added with the first decimal place of BigDecimal that has three (3) as integer in List in color-boxes? <br>
+     *     ↓
+     * Find LocalDate in yellow color-box,
+     * and add same color-box's LocalDateTime's seconds as number of months to it,
+     * and add red color-box's Long number as days to it,
+     * and subtract the first decimal place of BigDecimal that has three(3) as integer in List in color-boxes of it,
+     * What date is it?
+     *
      * (yellowのカラーボックスに入っているLocalDateに、同じカラーボックスに入っているLocalDateTimeの秒数を月数として足して、
      * redのカラーボックスに入っているLong型を日数として足して、カラーボックスに入っているリストの中のBigDecimalの整数値が3の小数点第一位の数を日数として引いた日付は？)
      */
