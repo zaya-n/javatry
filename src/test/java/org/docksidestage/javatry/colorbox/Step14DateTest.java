@@ -79,7 +79,7 @@ public class Step14DateTest extends PlainTestCase {
      * Find LocalDate in yellow color-box,
      * and add same color-box's LocalDateTime's seconds as number of months to it,
      * and add red color-box's Long number as days to it,
-     * and subtract the first decimal place of BigDecimal that has three(3) as integer in List in color-boxes of it,
+     * and subtract the first decimal place of BigDecimal that has three(3) as integer in list in color-boxes from it,
      * What date is it?
      *
      * (yellowのカラーボックスに入っているLocalDateに、同じカラーボックスに入っているLocalDateTimeの秒数を月数として足して、
