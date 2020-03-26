@@ -220,7 +220,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
-    public void test_objectOriented_polymorphism_3th_fromMethod() {
+    public void test_objectOriented_polymorphism_3rd_fromMethod() {
         Animal animal = createAnyAnimal();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
@@ -374,7 +374,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
      * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
      */
-    public void test_objectOriented_writing_() {
+    public void test_objectOriented_zoo() {
         // do nothing here
     }
 }
